@@ -1,0 +1,19 @@
+.life {
+  height: 25px;
+}
+.box {
+  -webkit-box-shadow: 2px 0px 7px -2px rgba(0,0,0,0.75);
+  -moz-box-shadow: 2px 0px 7px -2px rgba(0,0,0,0.75);
+  box-shadow: 2px 0px 7px -2px rgba(0,0,0,0.75);
+  padding: 40px;
+}
+
+.titulo {
+  font-size: 40px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.suporte-life {
+  border: 1px solid #ccc;
+}
+
