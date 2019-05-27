@@ -17,3 +17,12 @@
   border: 1px solid #ccc;
 }
 
+.porcentagem {
+  font-size: 20px;
+}
+
+.texto-dano {
+  font-size: 18px;
+  text-transform: uppercase;
+}
+

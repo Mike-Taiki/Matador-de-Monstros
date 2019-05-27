@@ -18,13 +18,27 @@
           <p class="text-center titulo">Jogador</p>
           <div>
             <div class="suporte-life">
-                <div class="bg-success life" :style="{width: porcentagem + '%'}"></div>
+              <div v-if="vidaJogador >= 20" class="bg-success life" :style="{width: vidaJogador + '%'}"></div>
+              <div v-else class="bg-danger life" :style="{width: vidaJogador + '%'}"></div>
             </div>
+            <p class="text-center porcentagem">{{ vidaJogador }}%</p>
           </div>
         </div>
         <div class="col-md-6">
           <p class="text-center titulo">Monstro</p>
-          <div class="bg-success life"></div>
+          <div class="suporte-life">
+            <div v-if="vidaMonstro >= 20" class="bg-success life" :style="{width: vidaMonstro + '%'}"></div>
+            <div v-else class="bg-danger life" :style="{width: vidaMonstro + '%'}"></div>
+          </div>
+          <p class="text-center porcentagem">{{ vidaMonstro }}%</p>
+        </div>
+      </div>
+    </div>
+
+    <div v-if="perdeu" class="container box mt-4">
+      <div class="row">
+        <div class="col-md-12">
+          <h5 class="text-danger text-center">Você perdeu! :(</h5>
         </div>
       </div>
     </div>
@@ -36,12 +50,25 @@
           <button class="btn btn-danger ml-2" v-if="start" @click="ataque">ATAQUE</button>
           <button class="btn btn-warning ml-2" v-if="start">ATAQUE ESPECIAL</button>
           <button class="btn btn-success ml-2" v-if="start">CURAR</button>
-          <button class="btn btn-secondary ml-2" v-if="start">DESISTIR</button>
+          <button class="btn btn-secondary ml-2" v-if="start" @click="start = !start">DESISTIR</button>
         </div>
       </div>
     </div>
-  </div>
 
+    <div v-if="dano" class="container box mt-4">
+      <div class="row">
+        <div class="col-md-12">
+          <div v-for="dano in danos.jogador">
+              <p class="bg-danger text-white text-center texto-dano">monstro atingiu jogador com {{ dano }}.</p>
+          </div>
+          <div v-for="dano in danos.monstro">
+              <p class="bg-danger text-white text-center texto-dano">jogador atingiu monstro com {{ dano }}.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+  </div>
   <script src="app.js"></script>
 </body>
 </html>
