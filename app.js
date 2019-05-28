@@ -9,10 +9,7 @@ new Vue({
     vidaMonstro: '100',
     perdeu: false,
     dano: false,
-    danos: {
-      jogador: [],
-      monstro: []
-    }
+    danos: []
   },
   methods: {
     ataque() {
@@ -24,10 +21,15 @@ new Vue({
 
       this.dano = !this.dano;
 
-      this.danos.jogador.push(this.ataqueMonstro);
-      this.danos.monstro.push(this.ataqueJogador);
+      // this.danos.all.push(this.ataqueMonstro);
+      // this.danos.all.push(this.ataqueJogador);
 
       console.log(this.danos);
+
+      if(this.ataqueMonstro == 0 || this.ataqueJogador == 0) {
+        this.ataqueJogador = 5;
+        this.ataqueMonstro = 9;
+      }
 
       if(this.vidaJogador <= 0) {
         this.vidaJogador = '0'

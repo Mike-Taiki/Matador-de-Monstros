@@ -26,3 +26,10 @@
   text-transform: uppercase;
 }
 
+ul li {
+  list-style: none;
+}
+ul li span {
+  width: 100%;
+  border-radius: 4px;
+}
