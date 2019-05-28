@@ -21,14 +21,11 @@ new Vue({
 
       this.dano = !this.dano;
 
-      // this.danos.all.push(this.ataqueMonstro);
-      // this.danos.all.push(this.ataqueJogador);
-
-      console.log(this.danos);
-
       if(this.ataqueMonstro == 0 || this.ataqueJogador == 0) {
         this.ataqueJogador = 5;
         this.ataqueMonstro = 9;
+        this.vidaJogador -= this.ataqueMonstro
+        this.vidaMonstro -= this.ataqueJogador
       }
 
       if(this.vidaJogador <= 0) {
