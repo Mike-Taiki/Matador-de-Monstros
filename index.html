@@ -43,14 +43,22 @@
       </div>
     </div>
 
+    <div v-if="venceu" class="container box mt-4">
+      <div class="row">
+        <div class="col-md-12">
+          <h5 class="text-success text-center">Você venceu! :)</h5>
+        </div>
+      </div>
+    </div>
+
     <div class="container box mt-4">
       <div class="row">
         <div class="col-md-12 d-flex justify-content-center">
           <button class="btn btn-primary" v-if="!start" @click="start = !start">Iniciar novo jogo</button>
           <button class="btn btn-danger ml-2" v-if="start" @click="ataque(), danos.unshift(ataqueMonstro), danos.unshift(ataqueJogador)">ATAQUE</button>          
-          <button class="btn btn-warning ml-2" v-if="start">ATAQUE ESPECIAL</button>
-          <button class="btn btn-success ml-2" v-if="start">CURAR</button>
-          <button class="btn btn-secondary ml-2" v-if="start" @click="start = !start">DESISTIR</button>
+          <button class="btn btn-warning ml-2" v-if="start" @click="ataqueEspecial(), danos.unshift(ataqueMonstro), danos.unshift(ataqueJogador)">ATAQUE ESPECIAL</button>
+          <button class="btn btn-success ml-2" v-if="start" @click="curar(), danos.unshift(ataqueMonstro)">CURAR</button>
+          <button class="btn btn-secondary ml-2" v-if="start" @click="start = !start, perdeu = !perdeu, desistir()">DESISTIR</button>
         </div>
       </div>
     </div>
@@ -60,8 +68,10 @@
         <div class="col-md-12">
             <ul class="text-white text-center texto-dano">
               <li v-for="(dano, index) in danos" class="d-flex justify-content-center mb-2">
-                  <span v-if="index % 2 == 0 || index == 0" class="bg-danger d-block">Jogador atingiu monstro com {{ dano }}.</span>
-                  <span v-else class="bg-primary">monstro atingiu jogador com {{ dano }}.</span>
+                  <span v-if="cura > 0" class="bg-success">Jogador recuperou {{ cura }} de life.</span>
+                  <span v-if="cura > 0" class="bg-warning">monstro atingiu jogador com {{ dano }}.</span>
+                  <span v-else-if="(index % 2 == 0) && (dano > 0) && (cura <= 0) || (index == 0)" class="bg-primary">Jogador atingiu monstro com {{ dano }}.</span>
+                  <span v-else-if="dano > 0" class="bg-danger">monstro atingiu jogador com {{ dano }}.</span>
               </li>
             </ul>
           </div>
